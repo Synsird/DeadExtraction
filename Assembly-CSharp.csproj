@@ -79,6 +79,7 @@
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\SampleOscillateSliders.cs" />
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\SampleRadialFillBar.cs" />
     <Compile Include="Assets\_Scripts\PlayerInteraction.cs" />
+    <Compile Include="Assets\_Scripts\Inventory\InventoryGridGenerator.cs" />
     <Compile Include="Assets\_Scripts\InteractableObject.cs" />
     <Compile Include="Assets\_Scripts\Player\FirstPersonCamera.cs" />
     <Compile Include="Assets\_Scripts\Inventory\EquipToSlot.cs" />
