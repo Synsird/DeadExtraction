@@ -7,6 +7,8 @@ public class CanvasManager : MonoBehaviour
     public static CanvasManager Instance { get; private set; }
 
     public GameObject PauseMenu;
+    public GameObject InventoryMenu;
+
     private bool pauseMenuToggled = false;
 
     private InputAction inputActions;
@@ -29,24 +31,32 @@ public class CanvasManager : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        pauseMenuToggled = !pauseMenuToggled;
-
-        if(pauseMenuToggled)
+        if(InventoryMenu.gameObject.activeInHierarchy)
         {
-            PauseMenu.SetActive(pauseMenuToggled);
-            if(Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                FirstPersonCamera.Instance.EnableInput(false);
-            }
+            InventoryMenu.SetActive(false);
+            Destroy(InventoryMenu.transform.GetChild(2).transform.GetChild(1).gameObject);
         }
         else
         {
-            PauseMenu.SetActive(pauseMenuToggled);
-            if (Cursor.lockState == CursorLockMode.None)
+            pauseMenuToggled = !pauseMenuToggled;
+
+            if (pauseMenuToggled)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                FirstPersonCamera.Instance.EnableInput(true);
+                PauseMenu.SetActive(pauseMenuToggled);
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    FirstPersonCamera.Instance.EnableInput(false);
+                }
+            }
+            else
+            {
+                PauseMenu.SetActive(pauseMenuToggled);
+                if (Cursor.lockState == CursorLockMode.None)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    FirstPersonCamera.Instance.EnableInput(true);
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -45,11 +46,46 @@ public class PlayerInteraction : MonoBehaviour
         bool rayHit = Physics.Raycast(rayOrigin, forwardDir, out RaycastHit hit, interactRange, iLayer);
         checkPoint = rayHit ? hit.point : rayOrigin + forwardDir * interactRange;
 
-        if(rayHit)
+        TextMeshProUGUI[] texts = ContextMenuPrefab.GetComponentsInChildren<TextMeshProUGUI>();
+
+        if (rayHit)
         {
             hitObj = hit.transform.GetComponent<Interactable>();
             if(hitObj != null)
             {
+                if(hitObj.gameObject.GetComponent<Inventory>() != null)
+                {
+                    foreach(TextMeshProUGUI textobj in texts)
+                    {
+                        if (textobj.name == "Label_InteractActionText")
+                        {
+                            textobj.text = "Open";
+                        }
+                    }
+
+                    if (InputManager.Instance.interactTriggered)
+                    {
+                        if(CanvasManager.Instance.InventoryMenu.activeInHierarchy)
+                        {
+                            return;
+                        }
+
+                        CanvasManager.Instance.InventoryMenu.SetActive(true);
+
+                        hitObj.gameObject.GetComponent<Inventory>().OnContainerInteract();
+                    }
+                }
+                else
+                {
+                    foreach (TextMeshProUGUI textobj in texts)
+                    {
+                        if (textobj.name == "Label_InteractActionText")
+                        {
+                            textobj.text = "Interact";
+                        }
+                    }
+                }
+
                 ContextMenuPrefab.alpha = 1;
             }
         }

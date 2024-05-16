@@ -73,7 +73,9 @@
     <Compile Include="Assets\_Scripts\Items\ItemDatasets\WeaponSO.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\SampleSceneLoader.cs" />
+    <Compile Include="Assets\_Scripts\Inventory\ContainerData.cs" />
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\SampleXPBar.cs" />
+    <Compile Include="Assets\_Scripts\Items\Item.cs" />
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\AnimatorActionData.cs" />
     <Compile Include="Assets\_Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Synty\InterfaceApocalypseHUD\Samples\Scripts\SampleOscillateSliders.cs" />

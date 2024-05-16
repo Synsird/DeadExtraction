@@ -74,6 +74,7 @@ public class InputManager : MonoBehaviour
         _sprintAction = inputActions.FindActionMap(actionMapName).FindAction(_Sprint);
         _crouchAction = inputActions.FindActionMap(actionMapName).FindAction(_Crouch);
         _pauseAction = inputActions.FindActionMap(actionMapName).FindAction(_Pause);
+        _interactAction = inputActions.FindActionMap(actionMapName).FindAction(_Interact);
 
         _moveAction.performed += _ => _MoveInput = _.ReadValue<Vector2>();
         _moveAction.canceled += _ => _MoveInput = Vector2.zero;
@@ -90,6 +91,9 @@ public class InputManager : MonoBehaviour
         _crouchAction.performed += _ => crouchTriggered = true;
         _crouchAction.canceled += _ => crouchTriggered = false;
 
+        _interactAction.performed += _ => interactTriggered = true;
+        _interactAction.canceled += _ => interactTriggered = false;
+
         _pauseAction.performed += _ => CanvasManager.Instance.TogglePauseMenu();
     }
 
@@ -101,6 +105,7 @@ public class InputManager : MonoBehaviour
         _sprintAction.Enable();
         _crouchAction.Enable();
         _pauseAction.Enable();
+        _interactAction.Enable();
     }
 
     private void OnDisable()
@@ -111,5 +116,6 @@ public class InputManager : MonoBehaviour
         _sprintAction.Disable();
         _crouchAction.Disable();
         _pauseAction.Disable();
+        _interactAction.Disable();
     }
 }
